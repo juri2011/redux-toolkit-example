@@ -6,7 +6,7 @@ import {createSlice, configureStore} from '@reduxjs/toolkit';
 
 //slice : 기능 하나를 위한 작은 store
 const counterSlice = createSlice({
-  name: 'counter',
+  name: 'counterSlice',
   initialState: {value:0},
   reducers:{
     up:(state, action)=>{
@@ -38,12 +38,13 @@ const store = createStore(reducer, initialState);
 function Counter(){
   const dispatch = useDispatch();
   const count = useSelector(state =>{
-    console.log(state);
+    console.log(state);//counter가 출력됨
     return state.counter.value;
   });
   return <div>
     <button onClick={()=>{
-      dispatch({type:'UP', step:2});
+      //counterSlice의 이름/action으로 명명
+      dispatch({type:'counterSlice/up', step:2});
     }}>+</button> {count}
   </div>
 }
