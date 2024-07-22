@@ -12,8 +12,9 @@ const initialState = {value:0}
 const store = createStore(reducer, initialState);
 
 function Counter(){
+  const count = useSelector(state => state.value);
   return <div>
-    <button>+</button> 0
+    <button>+</button> {count}
   </div>
 }
 
