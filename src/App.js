@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import {createStore} from 'redux';
 import {Provider, useSelector, useDispatch} from 'react-redux';
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, configureStore} from '@reduxjs/toolkit';
 
 //slice : 기능 하나를 위한 작은 store
 const counterSlice = createSlice({
@@ -16,6 +16,14 @@ const counterSlice = createSlice({
   }
 });
 
+const store = configureStore({
+  reducer: {
+    //counterSlice의 reducers들을 모아 만든 하나의 reducer를 반환
+    counter: counterSlice.reducer
+  }
+})
+/*
+
 function reducer(state, action){
   var newState = {...state};
   if(action.type === 'UP'){
@@ -26,10 +34,13 @@ function reducer(state, action){
 
 const initialState = {value:0}
 const store = createStore(reducer, initialState);
-
+*/
 function Counter(){
   const dispatch = useDispatch();
-  const count = useSelector(state => state.value);
+  const count = useSelector(state =>{
+    console.log(state);
+    return state.counter.value;
+  });
   return <div>
     <button onClick={()=>{
       dispatch({type:'UP', step:2});
