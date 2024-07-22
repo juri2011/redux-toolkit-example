@@ -14,3 +14,5 @@ const counterSlice = createSlice({
 });
 
 export default counterSlice;
+//counterSlice의 actions에서 up을 export함
+export const { up } = counterSlice.actions;

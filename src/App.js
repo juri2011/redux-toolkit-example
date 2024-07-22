@@ -3,6 +3,8 @@ import './App.css';
 import {createStore} from 'redux';
 import {Provider, useSelector, useDispatch} from 'react-redux';
 import store from './store';
+import {up} from './counterSlice';
+
 /*
 
 function reducer(state, action){
@@ -28,7 +30,9 @@ function Counter(){
       //dispatch({type:'counterSlice/up', step:2});
       //redux-toolkit은 reducer를 참고해서 자동으로 액션을 만들어줌
       //인자로 전달된 값은 reducer에서 payload로 받음
-      dispatch(counterSlice.actions.up(2));
+
+      //counterSlice.actions중에서 up이 export되어서 아래처럼 간단하게 쓸 수 있음
+      dispatch(up(2));
     }}>+</button> {count}
   </div>
 }
