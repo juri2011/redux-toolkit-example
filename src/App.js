@@ -11,7 +11,8 @@ const counterSlice = createSlice({
   reducers:{
     up:(state, action)=>{
       //객체의 불변성을 신경쓰면서 코드를 복잡하게 작성할 필요가 없다
-      state.value = state.value + action.step;
+      //payload는 자동으로 생성된 액션 크리에이터로 값을 전달받을 때 사용됨
+      state.value = state.value + action.payload;
     }
   }
 });
@@ -44,7 +45,10 @@ function Counter(){
   return <div>
     <button onClick={()=>{
       //counterSlice의 이름/action으로 명명
-      dispatch({type:'counterSlice/up', step:2});
+      //dispatch({type:'counterSlice/up', step:2});
+      //redux-toolkit은 reducer를 참고해서 자동으로 액션을 만들어줌
+      //인자로 전달된 값은 reducer에서 payload로 받음
+      dispatch(counterSlice.actions.up(2));
     }}>+</button> {count}
   </div>
 }
