@@ -5,6 +5,9 @@ import {Provider, useSelector, useDispatch} from 'react-redux';
 
 function reducer(state, action){
   var newState = {...state};
+  if(action.type === 'UP'){
+    return {...state, value:state.value + action.step}
+  }
   return newState;
 }
 
